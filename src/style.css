@@ -87,6 +87,35 @@ nav {
    border-radius: 50%;  
 }
 
+.btn-add{
+  margin-top: 5px;
+    display: inline-block;
+    color: #ffffff;
+    width: 100%;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+    height: 2.5rem;
+    text-align: center;
+    font-size: 0.80rem;
+    font-weight: 600;
+    line-height: 38px;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: #166da3;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 0px 30px;
+    border: 1px solid transparent;
+    border-image: initial;
+}
+
+.btn-add:hover{
+    background-color: #0f4a7d;
+    border: 1px solid transparent;
+    color: #fff;
+}
 
 .navbar:hover #carrito {
    display: block;
