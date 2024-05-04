@@ -1,13 +1,27 @@
 <script setup>
+   import { computed } from 'vue';
+
 
    const props = defineProps({
       carrito:{
          type:Array,
          required:true
+      },
+      cantidadCarrito:{
+         type:Number,
+         required:true
       }
+    
    });
+ 
 
-   defineEmits(['incrementar-cantidad','decrementar-cantidad','eliminar-producto','variar-carrito'])
+   defineEmits(['incrementar-cantidad','decrementar-cantidad','eliminar-producto','variar-carrito','pagar-compra']);
+
+   const totalPagar = computed( () =>{
+      return props.carrito.reduce((total,producto) =>
+         total + (producto.precio * producto.cantidad),0);
+   })
+
 
 </script>
 
@@ -17,8 +31,8 @@
       <div class="navbar">
          <a href="#" class="btn-carrito">🛒
          </a>
-         <span id="cantidad-carrito">0</span>
-
+         <span id="cantidad-carrito">{{cantidadCarrito}}</span>
+      
          <div id="carrito">
 
             <p class="text-center message" v-if="carrito.length === 0">El carrito esta vacio</p>
@@ -31,6 +45,7 @@
                         <th>Nombre</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
+                        <th>Subtotal</th>
                         <th>Oper</th>
                      </tr>
                   </thead>
@@ -45,7 +60,7 @@
                            />
                         </td>
                         <td>{{ producto.nombre }}</td>
-                        <td>{{ producto.precio}}</td>
+                        <td>$ {{ producto.precio}}</td>
                         <td>
                            <button
                               type="button"
@@ -64,6 +79,10 @@
                            </button>
                         </td>
                         <td>
+                           $ {{ producto.precio * producto.cantidad }}
+                        </td>
+
+                        <td>
                            <button 
                               @click="$emit('eliminar-producto',producto.id)"
                               class="borrar-producto"
@@ -76,13 +95,20 @@
                   </tbody>
                   <tfoot>
                      <tr>
-                        <td colspan="2">Total</td>
-                        <td id="total-pagar">0</td>
+                        <td colspan="4">Total a pagar</td>
+                        <td id="total-pagar">$ {{ totalPagar }}</td>
                      </tr>
                   </tfoot>
                </table>
                <div class="btns-carrito">
-                  <a href="#" id="pagar-compra" onclick="pagarCompra()">Pagar</a>
+                  <button 
+                     @click="$emit('pagar-compra')"
+                     id="pagar-compra"
+                     type="button"
+                  >
+                     Pagar Compra
+                  </button>
+
                   <button 
                      @click="$emit('vaciar-carrito')"
                      id="vaciar-carrito"
