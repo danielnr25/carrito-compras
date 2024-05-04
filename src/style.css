@@ -131,6 +131,28 @@ nav {
 
 
 /* Estilos para la tabla */
+.text-center{
+   text-align: center;
+}
+
+.message{
+   font-weight: 600;
+   color: #000;
+   font-size: 1.5rem;
+   padding: 0.6rem;
+}
+
+
+.btn{
+   padding: 0.35rem;
+   background-color: #000000;
+   color:#FFFFFF;
+   cursor: pointer;
+   border: none;
+   border-radius: 0.25rem;
+   transition: background-color 0.3s ease;
+}
+
 #lista-carrito {
    border-collapse: collapse;
    width: 100%;
@@ -199,6 +221,8 @@ nav {
    text-decoration: none;
    border-radius: 0.25rem;
    transition: background-color 0.3s ease;
+   border: none;
+   cursor: pointer;
 }
 
 .borrar-producto:hover {

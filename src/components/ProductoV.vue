@@ -7,9 +7,9 @@
     }
   });
 
-  const incrementar = () =>{
-    console.log('Incrementar');
-  }
+  defineEmits(['agregar-carrito'])
+
+  
 
 </script>
 
@@ -19,7 +19,9 @@
     <div class="card-header">
         <h3>{{ producto.nombre }}</h3>
         $<span>{{producto.precio}}</span>
-        <button @click="incrementar()"  class="btn-add agregar-carrito">
+        <button 
+         @click="$emit('agregar-carrito',producto)"
+         class="btn-add agregar-carrito">
           Agregar Carrito
         </button>
     </div>
